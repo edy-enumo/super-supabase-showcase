@@ -9,7 +9,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'your-supabase
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export type Product = {
-  id: number;
+  produto_id: number;
   cod_barras: string;
   descricao_completa: string;
 };
@@ -20,7 +20,7 @@ export async function getProducts(page: number = 1, pageSize: number = 20) {
   
   const { data, error, count } = await supabase
     .from('dm_produto')
-    .select('id, cod_barras, descricao_completa', { count: 'exact' })
+    .select('produto_id, cod_barras, descricao_completa', { count: 'exact' })
     .range(from, to);
   
   if (error) {
