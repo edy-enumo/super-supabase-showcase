@@ -12,8 +12,6 @@ export type Product = {
   id: number;
   cod_barras: string;
   descricao_completa: string;
-  image_url?: string;
-  created_at?: string;
 };
 
 export async function getProducts(page: number = 1, pageSize: number = 20) {
@@ -21,8 +19,8 @@ export async function getProducts(page: number = 1, pageSize: number = 20) {
   const to = from + pageSize - 1;
   
   const { data, error, count } = await supabase
-    .from('products')
-    .select('id, cod_barras, descricao_completa, image_url, created_at', { count: 'exact' })
+    .from('dm_produto')
+    .select('id, cod_barras, descricao_completa', { count: 'exact' })
     .range(from, to);
   
   if (error) {
