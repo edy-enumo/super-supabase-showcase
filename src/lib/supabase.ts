@@ -21,6 +21,7 @@ export async function getProducts(page: number = 1, pageSize: number = 20) {
   const { data, error, count } = await supabase
     .from('dm_produto')
     .select('produto_id, cod_barras, descricao_completa', { count: 'exact' })
+    .order('descricao_completa', { ascending: true })
     .range(from, to);
   
   if (error) {
