@@ -13,7 +13,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="aspect-square w-full overflow-hidden">
           <img 
             src={product.image_url} 
-            alt={product.name}
+            alt={product.descricao_completa}
             className="h-full w-full object-cover"
           />
         </div>
@@ -23,21 +23,13 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
       <CardHeader className="p-4 pb-0">
-        <h3 className="font-semibold text-lg line-clamp-1">{product.name}</h3>
+        <h3 className="font-semibold text-lg line-clamp-1">{product.cod_barras}</h3>
       </CardHeader>
       <CardContent className="p-4 pt-2 flex-grow">
-        <p className="text-sm text-muted-foreground line-clamp-2">
-          {product.description}
+        <p className="text-sm line-clamp-3">
+          {product.descricao_completa}
         </p>
       </CardContent>
-      <CardFooter className="p-4 pt-0">
-        <p className="font-bold">
-          {product.price.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-          })}
-        </p>
-      </CardFooter>
     </Card>
   );
 }

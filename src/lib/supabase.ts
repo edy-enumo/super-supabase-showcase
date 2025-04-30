@@ -10,9 +10,8 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export type Product = {
   id: number;
-  name: string;
-  description: string;
-  price: number;
+  cod_barras: string;
+  descricao_completa: string;
   image_url?: string;
   created_at?: string;
 };
@@ -23,7 +22,7 @@ export async function getProducts(page: number = 1, pageSize: number = 20) {
   
   const { data, error, count } = await supabase
     .from('products')
-    .select('*', { count: 'exact' })
+    .select('id, cod_barras, descricao_completa, image_url, created_at', { count: 'exact' })
     .range(from, to);
   
   if (error) {
